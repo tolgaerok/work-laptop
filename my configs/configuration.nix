@@ -16,14 +16,12 @@
   # Import snippet files
   #---------------------------------------------------------------------
 
-  imports = [         ###  ONLY UNCOMMENT THE ./hardware GPU YOU WANT  ###
+  imports = [
 
-    # ./hardware/gpu/intel/intel-laptop/intel-acceleration.nix  # INTEL GPU with (Open-GL), tlp and auto-cpufreq     
-    # ./hardware/gpu/nvidia/nvidia-stable/nvidia-stable.nix     # NVIDIA stable for GT-710--
-    ./hardware-configuration.nix
-    ./hardware/gpu/nvidia/nvidia-opengl/nvidia-opengl.nix # NVIDIA with hardware acceleration (Open-GL) for GT-1030++
+    
+    ./hardware-configuration
     ./nix
-    ./packages
+    ./pkgs
     ./programs
     ./services
     ./system
@@ -122,12 +120,12 @@
   # Systemd tmpfiles configuration for user's home directory
   #---------------------------------------------------------------------
 
-  #systemd.user.tmpfiles.rules = [
-  #  "d /home/tolga/Development/NixOS 0755 tolga users - -"
-  # "d /home/tolga/Xcripts 0755 tolga users - -"
-  # "d /home/tolga/Syncthing 0755 tolga users - -"
+  systemd.user.tmpfiles.rules = [
+    "d /home/tolga/Development/NixOS 0755 tolga users - -"
+    # "d /home/tolga/Xcripts 0755 tolga users - -"
+    # "d /home/tolga/Syncthing 0755 tolga users - -"
 
-  #];
+  ];
 
   #---------------------------------------------------------------------
   # Provide a graphical Bluetooth manager for desktop environments
