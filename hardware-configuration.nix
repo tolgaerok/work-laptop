@@ -12,19 +12,21 @@
     "ehci_pci"
     "sd_mod"
     "sr_mod"
-    "uas"
+    "firewire_ohci"
     "usb_storage"
     "usbhid"
     "xhci_pci"
+    "sdhci_pci"
   ];
 
   boot.extraModulePackages = [ ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelModules = [ "kvm-intel" "wl" ];
+  boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
   boot.kernelParams = [ "mitigations=off" ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/e4cd97fd-17b5-4851-9672-50798c2afcd4";
+    { device = "/dev/disk/by-uuid/42e78ec6-8161-46a5-a43a-ede751983265";
       fsType = "ext4";
     # for ssd
     options =
@@ -32,7 +34,7 @@
   };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/1591-80CE";
+    { device = "/dev/disk/by-uuid/7266-9765";
       fsType = "vfat";
   };
 
@@ -52,11 +54,9 @@
 #    in [
 #      "${automountOpts},credentials=${credentialsPath},uid=${uid},gid=${gid},vers=${vers},${cacheOpts}"
 #    ];
-  };
+#  };
 
-  swapDevices =
-    [ { device = "/dev/disk/by-uuid/71bb2615-3252-4757-a54b-e334ba86c751"; }
-    ];
+  swapDevices = [ ];
 
   #---------------------------------------------------------------------
   # For AMD hardware / chipsets
@@ -68,8 +68,7 @@
   # For Intel hardware / chipsets
   #---------------------------------------------------------------------
 
-  hardware.cpu.intel.updateMicrocode =
-    lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   #---------------------------------------------------------------------
   # Tell Nix to use appropriate packages and configurations for this 
