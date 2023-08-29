@@ -19,14 +19,14 @@
     "sdhci_pci"
   ];
 
-  boot.extraModulePackages = [ ];
+  # boot.extraModulePackages = [ ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" "wl" ];
   boot.extraModulePackages = [ config.boot.kernelPackages.broadcom_sta ];
   boot.kernelParams = [ "mitigations=off" ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/42e78ec6-8161-46a5-a43a-ede751983265";
+    { device = "/dev/disk/by-uuid/a11f3843-880a-4850-9e1f-46b91e24cdde";
       fsType = "ext4";
     # for ssd
     options =
@@ -34,7 +34,7 @@
   };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/7266-9765";
+    { device = "/dev/disk/by-uuid/F2F4-5545";
       fsType = "vfat";
   };
 
