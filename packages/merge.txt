@@ -1,0 +1,965 @@
+{ pkgs, ... }: {
+  # Andriod:
+  environment = {
+    systemPackages = with pkgs; [
+
+      # Andriod Utilities
+      # adbfs-rootless
+      # haskellPackages.adb
+      # android-tools
+      # android-file-transfer   # added by wvpianoman
+      # droidcam                # added by wvpianoman
+      # scrcpy                  # added by wvpianoman
+      # waydroid                # added by wvpianoman
+    ];
+  };
+}
+{ pkgs, ... }: {
+  # Compression:
+  environment = {
+    systemPackages = with pkgs; [
+
+      # Archive Utilities
+      atool
+      gzip
+      lz4
+      lzip
+      lzo
+      lzop
+      p7zip
+      rar
+      rzip
+      unzip
+      xz
+      zip
+      zstd
+
+    ];
+  };
+}
+{ pkgs, ... }: {
+  # Audio/Video Editing and Playback:
+  environment = {
+    systemPackages = with pkgs; [
+
+      # Multimedia Utilities
+      audacity
+      ffmpeg
+      ffmpegthumbnailer
+      libdvdcss
+      libdvdread
+      libopus
+      libvorbis
+      mediainfo
+      mpg123
+      mplayer
+      mpv
+      ocamlPackages.gstreamer
+      pulseaudioFull
+      simplescreenrecorder
+      video-trimmer
+
+    ];
+  };
+}
+{ ... }: {
+
+  imports = [
+
+    #---------------------------------------------------------------------
+    # Import custom in-house environment packages::
+    #---------------------------------------------------------------------
+
+    # ./trimmgenerations.nix
+    ./copy-back-up.nix
+    ./create-smb-user.nix
+    ./git_upload.nix
+    ./make-executable.nix
+    ./mounter.nix
+    ./my-nix-commands.nix
+    ./my-pkgs.nix
+    ./rsync-back-up.nix
+    ./rsync-home-to-server.nix    
+    ./unmounter.nix
+    
+    
+  ];
+
+}
+{ pkgs, ... }: {
+
+  # Database related
+
+  environment = {
+    systemPackages = with pkgs;
+      with libsForQt5; [
+        dbeaver
+        pgmodeler
+        sqlitebrowser
+      ];
+  };
+}
+{ ... }:
+
+{
+  #---------------------------------------------------------------------  
+  # Import default.nix from folders below
+  #---------------------------------------------------------------------
+
+  imports = [
+
+    #---------------------------------------------------------------------
+    # Editor
+    #---------------------------------------------------------------------
+ 
+    ./database        # dbeaver, pgmodeler, sqlitebrowser
+    ./dsctool
+
+    #---------------------------------------------------------------------
+    # Basic
+    #---------------------------------------------------------------------
+   
+    ./archiver
+
+    #---------------------------------------------------------------------
+    # Multimedia
+    #---------------------------------------------------------------------
+
+    ./audio-video
+    ./image
+    ./multi-media     # digikam, shotwell, gimp-with-plugins, brasero, vlc, youtube-dl
+
+    #---------------------------------------------------------------------
+    # Programming
+    #---------------------------------------------------------------------
+    
+    ./custom-pkgs     # My personal system-wide pkgs
+    ./devlopment
+    ./julia
+    ./vscode
+
+    #---------------------------------------------------------------------
+    # Desktop
+    #---------------------------------------------------------------------
+
+    ./internet        # clipgrab, wget, discord, whatsapp-for-linux, telegram, element, FF, Chrome
+    ./networking      # samba4Full, clif-utilities, teamviewer, openssh, sshpass, iwd
+    ./screensaver
+    ./wps
+    ./office     # libreoffice-fresh qownnotes, zotero, onlyoffice
+
+    #---------------------------------------------------------------------
+    # System tools
+    #---------------------------------------------------------------------
+
+    # ./andriod
+    ./misc
+    ./tools            # isoimagewriter, keepassxc, media-downloader, testdisk-qt, ventoy-full
+    ./utilities
+
+    #---------------------------------------------------------------------
+    # Enable flatpak
+    #---------------------------------------------------------------------
+
+    ./flatpak
+
+  ];
+
+}
+{ pkgs, ... }:
+{
+  # Clipboard Utilities:
+  environment = {
+    systemPackages = with pkgs; [
+      wl-clipboard      
+    ];
+  };
+}
+{ pkgs, ... }: {
+  # Command Line Tools Utilities:
+
+  environment = {
+    systemPackages = with pkgs; [
+
+      # Utilities
+      # fastfetch
+      bat
+      cliphist
+      dialog
+      doas
+      fx
+      fzf
+      vulkan-tools
+      wayland-utils
+      wl-clipboard
+
+    ];
+  };
+}
+{ pkgs, ... }:
+{
+  # Code Search and Analysis:
+  environment = {
+    systemPackages = with pkgs; [
+      ripgrep
+      ripgrep-all
+    ];
+  };
+}
+{
+    
+  # Import default.nix from folders below
+  imports =
+    [
+      
+      #./database
+      ./cli-utilities
+      ./clipboard
+      ./code-search
+      ./development
+      ./git
+      ./programming
+      ./shell-enhance
+      ./text-editors
+      
+    ];  
+  
+}
+{ pkgs, ... }: {
+
+  # Development and Version Control:....
+
+  environment = {
+    systemPackages = with pkgs; [
+
+      # Utilities
+
+      direnv
+      graalvm17-ce
+      mosh
+      nix-direnv
+      nixfmt
+      nixos-option
+      sublime4
+     # vscode # conflicts with vscode-with-extensions as this is just a stand alone
+     # vscode-extensions.mkhl.direnv
+     # vscode-extensions.brettm12345.nixfmt-vscode
+      
+    ];
+  };
+}
+{pkgs, ...}: {
+
+  # Github related
+
+  environment = {
+    systemPackages = with pkgs; [ 
+
+      # git-extras
+      # git-my
+      # gitg
+      # gitless 
+      # gitlint
+      # glab
+      #Git related
+      #gh
+      gitFull  # git git-jump git-upload-pack git-credential-libsecret git-receive-pack git-upload-archive git-cvsserver scalar git-shell gitk git-http-backend git-credential-netrc
+      gitlab
+      hut
+
+    ];
+  };
+}{ pkgs, ... }: 
+{
+  # Programming Languages and Tools:
+  environment = {
+    systemPackages = with pkgs; [
+      scala-cli
+      python311Full   # idle3.11 python3.11-config idle python3-config pydoc pydoc3 pydoc3.11 idle3 2to3-3.11 2to3 python3.11 python3 python-config python
+    ];
+  };
+}
+{ pkgs, ... }: {
+
+  # Shell Enhancements and Utilities:
+  
+  environment = {
+    systemPackages = with pkgs; [
+
+      # Fonts and Shell
+      rPackages.fontawesome
+      zsh
+      zsh-autosuggestions
+      zsh-syntax-highlighting
+
+    ];
+  };
+}
+{ pkgs, ... }: {
+
+  # Text Editors and Utilities:
+  environment = {
+    systemPackages = with pkgs; [
+
+      # Text Editors
+      kate
+      libkate
+      libsForQt5.kate
+      vim
+
+    ];
+  };
+}
+{pkgs, ...}: {
+  environment = {
+    systemPackages = with pkgs; [
+      dvc
+      gnuplot
+      iredis
+      litecli
+      luigi
+      mpi
+      quarto
+      root
+      visidata
+    ];
+  };
+}
+{ pkgs, ... }:
+
+  #---------------------------------------------------------------------
+  # Enable flatpak
+  #---------------------------------------------------------------------
+
+{
+  services.flatpak.enable = true;
+  systemd.services.configure-flathub-repo = {
+    wantedBy = [ "multi-user.target" ];
+    path = [ pkgs.flatpak ];
+    script = ''
+      flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    '';
+  };
+
+  
+}
+
+
+  
+{ pkgs, ... }: {
+
+  # Image Scanning and Processing:
+
+  environment = {
+    systemPackages = with pkgs; [
+
+      # Scanning and Image Viewing
+      nsxiv
+      sane-backends
+      scanbd
+      sxiv
+      
+    ];
+  };
+}
+{
+  # Execute the following:
+  imports =
+    [
+      ./downloading-apps
+      ./Messaging
+      ./web-browsers
+    ];
+
+}
+{ pkgs, ... }: {
+
+  # Downloading and Retrieving Files:
+
+  environment = {
+    systemPackages = with pkgs; [
+      
+      # Downloading Videos and Files
+      clipgrab
+      wget
+      
+    ];
+  };
+}
+{ pkgs, ... }:
+{
+  # Messaging and Communication:
+  environment = {
+    systemPackages = with pkgs; [
+      discord
+     # whatsapp-for-linux
+      telegram-desktop
+      element-desktop
+      caprine-bin
+
+      thunderbird
+    ];
+  };
+}
+{ pkgs, ... }: {
+  # Web Browsers:
+  environment = { systemPackages = with pkgs; [ firefox google-chrome ]; };
+
+  programs = {
+    firefox = {
+      enable = true;
+      policies = {
+        CaptivePortal = false;
+        DisableFirefoxAccounts = true;
+        DisableFirefoxStudies = true;
+        DisablePocket = true;
+        DisableTelemetry = true;
+        FirefoxHome = {
+          Pocket = false;
+          Snippets = false;
+        };
+        UserMessaging = {
+          ExtensionRecommendations = false;
+          SkipOnboarding = true;
+        };
+      };
+    };
+  };
+
+  nixpkgs.config.firefox.enablePlasmaBrowserIntegration = true;
+
+}
+{pkgs, ...}: {
+  environment = {
+    systemPackages = with pkgs; [
+
+      # Scientific computing
+      julia
+      
+    ];
+  };
+}
+{ pkgs, ... }:
+{
+  # Miscellaneous:
+  environment = {
+    systemPackages = with pkgs; [
+
+      cowsay                  # fortune | cowsay -f tux   fortune | cowsay -e ^^    fortune | cowsay | lolcat
+      fish
+      flatpak
+      fortune                 # unstr rot strfile fortune
+      libsForQt5.kweather
+      libsForQt5.kweathercore
+      lolcat                  # "lolcat" for colorful output
+      variety
+
+    ];
+  };
+}
+{
+  # Execute the following:
+  imports =
+    [
+      ./media-entertainment
+      ./media-managment
+    ];
+
+}
+{ pkgs, ... }:
+{
+  
+  environment = {
+    systemPackages = with pkgs; [
+
+      # Media and Entertainment:
+      vlc
+      youtube-dl
+    ];
+  };
+}
+{ pkgs, ... }: {
+
+  # Media Management:
+  environment = {
+    systemPackages = with pkgs; [
+
+      # Picture manger
+      digikam
+      shotwell
+
+      # Picture Editors
+      gimp-with-plugins
+
+      # Disc burner
+      brasero
+
+    ];
+  };
+}
+{
+  # Execute the following:
+  imports = 
+  [
+    
+    # ./iwd
+    ./network-testing
+    ./remote-access
+    ./samba-networking
+  ];
+
+}
+{ pkgs, ... }: 
+{
+  # Add the required packages for iwd backend
+  environment.systemPackages = with pkgs; [ 
+    iwd 
+    # iwd-tools 
+  ];
+}
+{ pkgs, ... }: {
+  # Network Testing and Monitoring:
+  environment = {
+    systemPackages = with pkgs; [
+
+      # Network Utilities
+      doppler
+      ookla-speedtest
+      
+    ];
+  };
+}
+{ config, lib, pkgs, ... }:
+{
+  # Remote Access and Automation:
+  
+  imports =
+  [
+   # ./teamviewer.nix
+  ];
+
+  environment = {
+    systemPackages = with pkgs; [
+      # Remote Access & Deployment
+      heroku
+      openssh    
+      powershell
+      sshpass
+      teamviewer 
+      # nomachine-client
+    ];
+  };
+
+  services.teamviewer.enable = true;
+}
+{ pkgs, ... }: {
+
+  # Samba and Networking:
+  
+  environment = {
+    systemPackages = with pkgs; [
+
+      # File Sharing & Network
+      # samba
+      samba4Full
+      cifs-utils
+
+    ];
+  };
+}
+{pkgs, ...}: {
+  environment = {
+    systemPackages = with pkgs; [
+      libreoffice-fresh
+      # libreoffice-qt
+      qownnotes
+      zotero
+      onlyoffice-bin
+    ];
+  };
+}
+{ pkgs, ... }: {
+
+  # XSCREENSAVER [ xscreensaver-command xscreensaver-demo xscreensaver xscreensaver-settings ]
+
+  environment = {
+    systemPackages = with pkgs;
+      [
+
+        # xscreensaver
+        xscreensaver
+
+      ];
+  };
+}
+{ pkgs, ... }: {
+
+  environment = {
+    systemPackages = with pkgs; [
+      # system tools
+      isoimagewriter
+      keepassxc
+      media-downloader
+      testdisk-qt
+      ventoy-full          # ventoy   ventoy-persistent   ventoy-web   ventoy-plugson   ventoy-extend-persistent
+    ];
+  };
+}
+{
+  # Execute the following:
+  imports =
+    [
+      
+      ./file-management
+      ./file-system
+      ./file-transfer
+      ./system-utilities
+    ];
+
+}
+{ pkgs, ... }: {
+
+  #---------------------------------------------------------------------
+  # File Management:
+  #---------------------------------------------------------------------
+
+  environment = {
+    systemPackages = with pkgs; [
+
+      # USB and Device Utilities
+      usbutils
+
+      # XDG and File Managers
+      xdg-desktop-portal-gtk
+      xfce.thunar
+      xfce.thunar-volman
+      xfce.thunar-dropbox-plugin
+      xfce.thunar-archive-plugin
+      xfce.thunar-media-tags-plugin
+
+      # Other Miscellaneous Programs
+      blueberry
+      efibootmgr
+      gum
+      krusader
+    ];
+  };
+}
+{ pkgs, ... }: {
+  #---------------------------------------------------------------------
+  # File Systems and Archiving:
+  #---------------------------------------------------------------------
+
+  environment = {
+    systemPackages = with pkgs; [
+
+      # Libraries
+      libarchive
+      libbtbb
+      libnotify       # Desktop Notify agent example: notify-send --icon=fcitx --app-name="DONE" "Fonts folder copied into $(whoami)" "$font_dest" -u normal
+      notify-desktop  # Desktop Notify agent example: notify-desktop --icon=call-start "Incoming call"   SOURCE: https://github.com/nowrep/notify-desktop/tree/master
+    ];
+  };
+}
+{ pkgs, ... }:
+{
+  
+  
+  environment = {
+    systemPackages = with pkgs; [
+
+      # File Transfer:
+      filezilla
+      libfilezilla
+      rsync 
+      transmission-gtk
+      onedrive
+      megasync
+      rclone
+      rclone-browser
+
+    ];
+  };
+}
+{ pkgs, ... }: {
+
+  # ---------------------------------------------------------------------
+  # System Utilities:
+  # ---------------------------------------------------------------------
+
+  environment = {
+    systemPackages = with pkgs; [
+
+      # Disk Utilities
+      gparted
+      hw-probe # sudo -E hw-probe -all -upload
+      ntfs3g
+
+      # Terminal Utilities
+      asunder
+      bashInteractive
+      cmatrix
+      cowsay
+      delta
+      direnv
+      duf
+      fd
+      figlet
+      btop
+      imagemagick
+      inotify-tools         # inotifywait   inotifywatch    https://github.com/inotify-tools/inotify-tools/wiki
+      isoimagewriter
+      less
+      lf
+      lfs
+      lsd
+      lsdvd
+      ncdu
+      neofetch
+      neovim
+      parallel-full
+      pciutils
+      pfetch
+      pkgconfig
+      pmutils
+      psmisc
+      sl
+      stow
+      tig
+      tldr
+      tree
+      vim
+      gnome.zenity    # For notifications and code dialogs
+
+      # XDG Utilities
+      xdg-launch
+      xdg-utils
+
+    ];
+  };
+}
+{ pkgs, ... }:
+
+# To list all installed vscode extension run in terminal:   
+# code --list-extensions | xargs -L 1 echo code --install-extension
+
+{
+  environment = {
+    systemPackages = with pkgs;
+      [
+        (vscode-with-extensions.override {
+          vscode = vscode; # Use the regular VS Code package
+          vscodeExtensions = with vscode-extensions;
+
+            [
+              aaron-bond.better-comments
+              aaronduino.nix-lsp
+              adam-bender.commit-message-editor
+              agutierrezr.emmet-keybindings
+              agutierrezr.vscode-essentials
+              albert.TabOut
+              alefragnani.project-manager
+              AlvaroSannas.nix
+              anteprimorac.html-end-tag-labels
+              arrterian.nix-env-selector
+              B4dM4n.nixpkgs-fmt
+              bbenoist.Nix
+              bbugh.change-color-format
+              bmalehorn.shell-syntax
+              bodil.file-browser
+              brettm12345.nixfmt-vscode
+              BriteSnow.vscode-toggle-quotes
+              castello-dev.bash-snippets
+              cheshirekow.cmake-format
+              christian-kohler.npm-intellisense
+              christian-kohler.path-intellisense
+              cipchk.cssrem
+              codezombiech.gitignore
+              coolbear.systemd-unit-file
+              DavidAnson.vscode-markdownlint
+              DeepInThought.vscode-shell-snippets
+              deerawan.vscode-faker
+              dionmunk.vscode-notes
+              discretegames.f5anything
+              donjayamanne.git-extension-pack
+              donjayamanne.githistory
+              dzhavat.git-cheatsheet
+              eamodio.gitlens
+              ecmel.vscode-html-css
+              EditorConfig.EditorConfig
+              EdwinKofler.vscode-hyperupcall-pack-unix
+              elves.elvish
+              esbenp.prettier-vscode
+              ExodiusStudios.comment-anchors
+              felipecaputo.git-project-manager
+              FernandoToledo.ft-extension-pack
+              formulahendry.auto-close-tag
+              formulahendry.auto-rename-tag
+              foxundermoon.shell-format
+              # gio00.fish
+              GitHub.codespaces
+              GitHub.copilot
+              GitHub.github-vscode-theme
+              GitHub.remotehub
+              github.vscode-github-actions
+              GitHub.vscode-pull-request-github
+              huizhou.githd
+              inu1255.easy-snippet
+              Isaac-Frank.myBeautify
+              j3m.shell-script-tests
+              jamesottaway.nix-develop
+              jannek-aalto.shell-function-outline
+              jasonlhy.hungry-delete
+              jbockle.jbockle-format-files
+              jeff-hykin.better-shellscript-syntax
+              jnoortheen.nix-ide
+              joyous-coder.shell-extension-pack
+              L13RARY.l13-sh-snippets
+              lacroixdavid1.vscode-format-context-menu
+              lizebang.bash-extension-pack
+              mads-hartmann.bash-ide-vscode
+              martinring.nix
+              McCarter.start-git-bash
+              mgmcdermott.vscode-language-babel
+              mhutchie.git-graph
+              mikeburgh.xml-format
+              mikestead.dotenv
+              mkhl.direnv
+              mohd-akram.vscode-html-format
+              mrmlnc.vscode-duplicate
+              mrmlnc.vscode-scss
+              ms-dotnettools.csharp
+              ms-dotnettools.vscode-dotnet-runtime
+              ms-edgedevtools.vscode-edge-devtools
+              ms-python.python
+              ms-python.vscode-pylance
+              ms-vscode-remote.remote-containers
+              ms-vscode-remote.remote-ssh
+              ms-vscode-remote.remote-ssh-edit
+              ms-vscode.azure-repos
+              ms-vscode.cmake-tools
+              ms-vscode.cpptools
+              ms-vscode.cpptools-extension-pack
+              ms-vscode.cpptools-themes
+              ms-vscode.makefile-tools
+              ms-vscode.powershell
+              ms-vscode.remote-explorer
+              ms-vscode.remote-repositories
+              ms-vscode.remote-server
+              ms-vsliveshare.vsliveshare
+              msjsdiag.debugger-for-chrome
+              nidu.copy-json-path
+              Nixer1337.nixware-lua-api-snippets
+              pinage404.bash-extension-pack
+              pinage404.nix-extension-pack
+              piotrpalarz.vscode-gitignore-generator
+              PKief.material-icon-theme
+              pombadev.pbbs
+              pomber.git-file-history
+              redhat.vscode-yaml
+              Remisa.shellman
+              richie5um2.vscode-sort-json
+              rifi2k.format-html-in-php
+              ritwickdey.LiveServer
+              rogalmic.bash-debug
+              rpinski.shebang-snippets
+              ryu1kn.partial-diff
+              sburg.vscode-javascript-booster
+              shakram02.bash-beautify
+              sibiraj-s.vscode-scss-formatter
+              spmeesseman.vscode-taskexplorer
+              sugatoray.vscode-git-extension-pack
+              sum-packer.shell-extension-summary
+              tetradresearch.vscode-h2o
+              TheNuProjectContributors.vscode-nushell-lang
+              timonwong.shellcheck
+              truman.autocomplate-shell
+              trunk.io
+              twxs.cmake
+              Tyriar.sort-lines
+              usernamehw.errorlens
+              varharrie.import-beautify
+              vincentc-afk.auto-completion-t4d-shell-ansible
+              VisualStudioExptTeam.intellicode-api-usage-examples
+              VisualStudioExptTeam.vscodeintellicode
+              vivaxy.vscode-conventional-commits
+              vsls-contrib.gistfs
+              waderyan.gitblame
+              wmaurer.change-case
+              wmaurer.vscode-jumpy
+              xabikos.JavaScriptSnippets
+              yamajyn.commandlist
+              yasht.terminal-all-in-one
+              yzhang.markdown-all-in-one
+              ziyasal.vscode-open-in-github
+            ];
+        })
+      ];
+  };
+}
+{ pkgs, ... }: {
+  environment = {
+    systemPackages = with pkgs;
+      [
+        (vscode-with-extensions.override {
+
+          vscode = vscodium;
+
+          vscode = vscode;
+
+          vscodeExtensions = with vscode-extensions;
+            [
+              b4dm4n.vscode-nixpkgs-fmt
+              bbenoist.nix
+              bmalehorn.vscode-fish
+              bodil.file-browser
+              bungcip.better-toml
+              codezombiech.gitignore
+              davidanson.vscode-markdownlint
+              donjayamanne.githistory
+              editorconfig.editorconfig
+              esbenp.prettier-vscode
+              formulahendry.code-runner
+              grapecity.gc-excelviewer
+              jnoortheen.nix-ide
+              mechatroner.rainbow-csv
+              mhutchie.git-graph
+              naumovs.color-highlight
+              pkief.material-icon-theme
+              scala-lang.scala
+              scalameta.metals
+              shardulm94.trailing-spaces
+              shd101wyy.markdown-preview-enhanced
+              skyapps.fish-vscode
+              streetsidesoftware.code-spell-checker
+              tyriar.sort-lines
+              yzhang.markdown-all-in-one
+            ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [{
+              name = "language-julia";
+              publisher = "julialang";
+              version = "1.48.1";
+              sha256 =
+                "986d9e38e8ad54f424d65889eb8bbd20035298e863431a69da3ed5a72e1dcb54";
+            }];
+        })
+      ];
+  };
+}
+{ pkgs, ... }:
+{
+  #---------------------------------------------------------------------
+  # Office and Productivity:
+  #---------------------------------------------------------------------
+
+  environment = {
+    systemPackages = with pkgs; [
+
+      # Office suite
+      wpsoffice     
+
+      # Desktop accessories
+      deepin.deepin-calculator
+      
+    ];
+  };
+}
