@@ -44,8 +44,7 @@
     ./internet        # clipgrab, wget, discord, whatsapp-for-linux, telegram, element, FF, Chrome
     ./networking      # samba4Full, clif-utilities, teamviewer, openssh, sshpass, iwd
     ./screensaver
-    ./wps
-    ./office     # libreoffice-fresh qownnotes, zotero, onlyoffice
+    ./office     # libreoffice-fresh qownnotes, zotero, onlyoffice, wps
 
     #---------------------------------------------------------------------
     # System tools
