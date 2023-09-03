@@ -78,10 +78,5 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   networking.useDHCP = lib.mkDefault true;
 
-  #---------------------------------------------------------------------
-  # Latest real-time (RT) version of the Linux kernel.
-  #---------------------------------------------------------------------
-
-  # kernelPackages = pkgs.linuxPackages-rt_latest;
 
 }
