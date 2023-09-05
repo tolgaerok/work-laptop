@@ -35,7 +35,7 @@
     ./custom-pkgs     # My personal system-wide pkgs
     ./devlopment
     #./vscode
-    #./vscodium
+    ./vscodium
 
     #---------------------------------------------------------------------
     # Desktop
