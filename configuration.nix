@@ -21,13 +21,13 @@
 
     ./hardware/gpu/intel/intel-laptop/intel-acceleration.nix  # INTEL GPU with (Open-GL), tlp and auto-cpufreq
     # ./hardware/gpu/nvidia/nvidia-stable/nvidia-stable.nix     # NVIDIA stable for GT-710--
-    ./hardware-configuration.nix
     #./hardware/gpu/nvidia/nvidia-opengl/nvidia-opengl.nix # NVIDIA with hardware acceleration (Open-GL) for GT-1030++
-    ./nix
-    ./packages
-    ./programs
-    ./services
-    ./system
+      ./hardware-configuration.nix
+      ./nix
+      ./packages
+      ./programs
+      ./services
+      ./system
 
   ];
 
@@ -62,6 +62,7 @@
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
   };
+
   # --------------------------------------------------------------------
   # Permit Insecure Packages
   # --------------------------------------------------------------------
