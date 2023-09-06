@@ -2,9 +2,7 @@
   environment = {
     systemPackages = with pkgs; [
 
-  #####################################
   #  Android Utilities
-  #####################################
 
      adbfs-rootless          # Mount Android phones on Linux with adb, no root required
      haskellPackages.adb     # Android Debug Bridge (ADB) protocol
