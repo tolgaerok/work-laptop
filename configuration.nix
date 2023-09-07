@@ -91,7 +91,7 @@
   # User Configuration
   #---------------------------------------------------------------------
 
-  users.users.brianf = {
+  users.users.brian = {
     homeMode = "0755";
     isNormalUser = true;
     description = "Brian Francisco";

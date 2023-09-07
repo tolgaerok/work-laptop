@@ -26,7 +26,7 @@
   boot.kernelParams = [ "mitigations=off" ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/a11f3843-880a-4850-9e1f-46b91e24cdde";
+    { device = "/dev/disk/by-uuid/fa7d2ff6-d2ea-4e14-9667-38b187462493";
       fsType = "ext4";
     # for ssd
     options =
@@ -34,7 +34,7 @@
   };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/F2F4-5545";
+    { device = "/dev/disk/by-uuid/0E50-7B66";
       fsType = "vfat";
   };
 
@@ -56,7 +56,9 @@
 #    ];
 #  };
 
-  swapDevices = [ ];
+  swapDevices =
+    [ { device = "/dev/disk/by-uuid/6797ce94-b685-4085-b0de-8839e6707fd1"; }
+    ];
 
   #---------------------------------------------------------------------
   # For AMD hardware / chipsets
